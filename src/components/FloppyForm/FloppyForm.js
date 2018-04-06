@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NumberFormat from 'react-number-format';
+import FloppyText from '../FloppyText/FloppyText'
 
 export default class FloppyForm extends Component {
     constructor(props) {
@@ -7,8 +7,7 @@ export default class FloppyForm extends Component {
         this.state = {
             data_size: '10',
             data_unit: 'KB',
-            floppies: '1',
-            floppy_text: ' 3.5" floppy disks'
+            floppies: '1'
         };
 
 
@@ -47,6 +46,7 @@ export default class FloppyForm extends Component {
         
         this.setState(state);
     }
+    
     updateFloppies(floppies) {
         this.setState({'floppies': floppies})
     }
@@ -65,7 +65,7 @@ export default class FloppyForm extends Component {
                     <option name="PB">PB</option>
                 </select>
             </label>
-            <div><NumberFormat thousandSeparator={true} displayType={'text'} value={this.state.floppies} /> {this.state.floppy_text}</div>
+            <FloppyText floppies={this.state.floppies} />
         </form>
 
         );
