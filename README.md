@@ -3,5 +3,8 @@
 Purpose of this project is to learn React, and build a "serverless" app in AWS. 
 
 ## Requirements
-App working in React with a Python backend to be ported to Lambda for use with API Gateway. 
-Build w/ tests, and push to S3/Lambda as a pipeline.
+* App working in React
+* Python backend to be ported to Lambda 
+* API Gateway in front of Lambda 
+* React app deployed to S3 w/ CloudFront enabled
+* Build pipeline with "delivery", promoted only by passing tests
