@@ -1,0 +1,9 @@
+div.floppy-grid {
+    width: 90%;
+    margin: 0 auto;
+}
+
+div.floppy-grid div.floppy-grid-disk {
+    float: left;
+    margin-right: 2px;
+}

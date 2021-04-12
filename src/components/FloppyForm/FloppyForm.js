@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+
+import './FloppyForm.css'
 import FloppyText from '../FloppyText/FloppyText'
+
 
 export default class FloppyForm extends Component {
     constructor(props) {
@@ -31,7 +34,7 @@ export default class FloppyForm extends Component {
 
         let state = this.state
         state[name] = value
-        let url = 'http://localhost:5000/api/v1.0/floppies/' + state.data_size + '/' + state.data_unit;
+        let url = 'http://localhost:5000/api/v1.0/floppies/' + parseFloat(state.data_size) + '/' + state.data_unit;
 
         fetch(url)
             .then(response => {

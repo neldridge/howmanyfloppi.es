@@ -2,10 +2,16 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from math import ceil
+import logging, sys
 
 app = Flask(__name__)
 CORS(app)
 
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.DEBUG)
+
+
+@app.route('/api/v1.0/floppies/<float:data_size>/<string:data_unit>')
 @app.route('/api/v1.0/floppies/<int:data_size>/<string:data_unit>')
 def calculate_floppies(data_size, data_unit):
 
@@ -17,6 +23,7 @@ def calculate_floppies(data_size, data_unit):
         'TB': float(10) ** float(6),
         'PB': float(10) ** float(9),
     }
+
     return jsonify({
         'data_size': data_size,
         'data_unit': data_unit,
