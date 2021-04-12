@@ -5,6 +5,7 @@ import FloppyText from '../FloppyText/FloppyText'
 
 
 export default class FloppyForm extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -36,24 +37,18 @@ export default class FloppyForm extends Component {
         state[name] = value
         let url = 'http://localhost:5000/api/v1.0/floppies/' + parseFloat(state.data_size) + '/' + state.data_unit;
 
-        fetch(url)
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                this.updateFloppies(data['floppies'])
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-        
+        let modifiers = {
+            'KB': Math.pow(parseFloat(10), parseFloat(-3)),
+            'MB': 1,
+            'GB': Math.pow(parseFloat(10), parseFloat(3)),
+            'TB': Math.pow(parseFloat(10), parseFloat(6)),
+            'PB': Math.pow(parseFloat(10), parseFloat(9)),
+        };
+
+        state.floppies = parseInt(Math.ceil(parseFloat(modifiers[state.data_unit]) * parseFloat(state.data_size) / parseFloat(1.44)));
         this.setState(state);
     }
     
-    updateFloppies(floppies) {
-        this.setState({'floppies': floppies})
-    }
-
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
